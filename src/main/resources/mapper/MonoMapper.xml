@@ -27,11 +27,83 @@
     <result column="NEXT_LV_EMP" jdbcType="VARCHAR" property="nextLvEmp" />
     <result column="POSITION_ID" jdbcType="INTEGER" property="positionId" />
   </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
   <sql id="Base_Column_List">
     ID, NAME, PA, MA, PD, MD, HP, MP, MAX_HP, MAX_MP, MASTER, COUNTRY_ID, RACE_ID, DISPOSITION_ID, 
     GROW_ID, MOOD_ID, GREATE_TIME, STATUS, IS_LIVE, LIFETIME, LV, EMPIRICAL, NEXT_LV_EMP, 
     POSITION_ID
   </sql>
+  <select id="selectByExample" parameterType="com.xiaohe.mamono.entity.MonoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from mono
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -41,6 +113,12 @@
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from mono
     where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.xiaohe.mamono.entity.MonoExample">
+    delete from mono
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
   </delete>
   <insert id="insert" parameterType="com.xiaohe.mamono.entity.Mono">
     insert into mono (ID, NAME, PA, MA, 
@@ -211,6 +289,122 @@
       </if>
     </trim>
   </insert>
+  <select id="countByExample" parameterType="com.xiaohe.mamono.entity.MonoExample" resultType="java.lang.Long">
+    select count(*) from mono
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update mono
+    <set>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null">
+        NAME = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pa != null">
+        PA = #{record.pa,jdbcType=REAL},
+      </if>
+      <if test="record.ma != null">
+        MA = #{record.ma,jdbcType=REAL},
+      </if>
+      <if test="record.pd != null">
+        PD = #{record.pd,jdbcType=REAL},
+      </if>
+      <if test="record.md != null">
+        MD = #{record.md,jdbcType=REAL},
+      </if>
+      <if test="record.hp != null">
+        HP = #{record.hp,jdbcType=INTEGER},
+      </if>
+      <if test="record.mp != null">
+        MP = #{record.mp,jdbcType=INTEGER},
+      </if>
+      <if test="record.maxHp != null">
+        MAX_HP = #{record.maxHp,jdbcType=REAL},
+      </if>
+      <if test="record.maxMp != null">
+        MAX_MP = #{record.maxMp,jdbcType=REAL},
+      </if>
+      <if test="record.master != null">
+        MASTER = #{record.master,jdbcType=INTEGER},
+      </if>
+      <if test="record.countryId != null">
+        COUNTRY_ID = #{record.countryId,jdbcType=INTEGER},
+      </if>
+      <if test="record.raceId != null">
+        RACE_ID = #{record.raceId,jdbcType=INTEGER},
+      </if>
+      <if test="record.dispositionId != null">
+        DISPOSITION_ID = #{record.dispositionId,jdbcType=INTEGER},
+      </if>
+      <if test="record.growId != null">
+        GROW_ID = #{record.growId,jdbcType=INTEGER},
+      </if>
+      <if test="record.moodId != null">
+        MOOD_ID = #{record.moodId,jdbcType=INTEGER},
+      </if>
+      <if test="record.greateTime != null">
+        GREATE_TIME = #{record.greateTime,jdbcType=BIGINT},
+      </if>
+      <if test="record.status != null">
+        STATUS = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.isLive != null">
+        IS_LIVE = #{record.isLive,jdbcType=INTEGER},
+      </if>
+      <if test="record.lifetime != null">
+        LIFETIME = #{record.lifetime,jdbcType=BIGINT},
+      </if>
+      <if test="record.lv != null">
+        LV = #{record.lv,jdbcType=INTEGER},
+      </if>
+      <if test="record.empirical != null">
+        EMPIRICAL = #{record.empirical,jdbcType=INTEGER},
+      </if>
+      <if test="record.nextLvEmp != null">
+        NEXT_LV_EMP = #{record.nextLvEmp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.positionId != null">
+        POSITION_ID = #{record.positionId,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update mono
+    set ID = #{record.id,jdbcType=INTEGER},
+      NAME = #{record.name,jdbcType=VARCHAR},
+      PA = #{record.pa,jdbcType=REAL},
+      MA = #{record.ma,jdbcType=REAL},
+      PD = #{record.pd,jdbcType=REAL},
+      MD = #{record.md,jdbcType=REAL},
+      HP = #{record.hp,jdbcType=INTEGER},
+      MP = #{record.mp,jdbcType=INTEGER},
+      MAX_HP = #{record.maxHp,jdbcType=REAL},
+      MAX_MP = #{record.maxMp,jdbcType=REAL},
+      MASTER = #{record.master,jdbcType=INTEGER},
+      COUNTRY_ID = #{record.countryId,jdbcType=INTEGER},
+      RACE_ID = #{record.raceId,jdbcType=INTEGER},
+      DISPOSITION_ID = #{record.dispositionId,jdbcType=INTEGER},
+      GROW_ID = #{record.growId,jdbcType=INTEGER},
+      MOOD_ID = #{record.moodId,jdbcType=INTEGER},
+      GREATE_TIME = #{record.greateTime,jdbcType=BIGINT},
+      STATUS = #{record.status,jdbcType=INTEGER},
+      IS_LIVE = #{record.isLive,jdbcType=INTEGER},
+      LIFETIME = #{record.lifetime,jdbcType=BIGINT},
+      LV = #{record.lv,jdbcType=INTEGER},
+      EMPIRICAL = #{record.empirical,jdbcType=INTEGER},
+      NEXT_LV_EMP = #{record.nextLvEmp,jdbcType=VARCHAR},
+      POSITION_ID = #{record.positionId,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.xiaohe.mamono.entity.Mono">
     update mono
     <set>

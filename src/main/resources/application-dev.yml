@@ -16,3 +16,12 @@ mybatis:
 mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true
+
+map:
+  height: 100
+  length: 100
+
+county:
+  number:
+  minSize:
+  maxSize:
