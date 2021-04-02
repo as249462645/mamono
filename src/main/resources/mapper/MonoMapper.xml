@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaohe.mamono.dao.MonoMapper">
+  <resultMap id="BaseResultMap" type="com.xiaohe.mamono.entity.Mono">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="PA" jdbcType="REAL" property="pa" />
+    <result column="MA" jdbcType="REAL" property="ma" />
+    <result column="PD" jdbcType="REAL" property="pd" />
+    <result column="MD" jdbcType="REAL" property="md" />
+    <result column="HP" jdbcType="INTEGER" property="hp" />
+    <result column="MP" jdbcType="INTEGER" property="mp" />
+    <result column="MAX_HP" jdbcType="REAL" property="maxHp" />
+    <result column="MAX_MP" jdbcType="REAL" property="maxMp" />
+    <result column="MASTER" jdbcType="INTEGER" property="master" />
+    <result column="COUNTRY_ID" jdbcType="INTEGER" property="countryId" />
+    <result column="RACE_ID" jdbcType="INTEGER" property="raceId" />
+    <result column="DISPOSITION_ID" jdbcType="INTEGER" property="dispositionId" />
+    <result column="GROW_ID" jdbcType="INTEGER" property="growId" />
+    <result column="MOOD_ID" jdbcType="INTEGER" property="moodId" />
+    <result column="GREATE_TIME" jdbcType="BIGINT" property="greateTime" />
+    <result column="STATUS" jdbcType="INTEGER" property="status" />
+    <result column="IS_LIVE" jdbcType="INTEGER" property="isLive" />
+    <result column="LIFETIME" jdbcType="BIGINT" property="lifetime" />
+    <result column="LV" jdbcType="INTEGER" property="lv" />
+    <result column="EMPIRICAL" jdbcType="INTEGER" property="empirical" />
+    <result column="NEXT_LV_EMP" jdbcType="VARCHAR" property="nextLvEmp" />
+    <result column="POSITION_ID" jdbcType="INTEGER" property="positionId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, NAME, PA, MA, PD, MD, HP, MP, MAX_HP, MAX_MP, MASTER, COUNTRY_ID, RACE_ID, DISPOSITION_ID, 
+    GROW_ID, MOOD_ID, GREATE_TIME, STATUS, IS_LIVE, LIFETIME, LV, EMPIRICAL, NEXT_LV_EMP, 
+    POSITION_ID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from mono
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from mono
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xiaohe.mamono.entity.Mono">
+    insert into mono (ID, NAME, PA, MA, 
+      PD, MD, HP, MP, 
+      MAX_HP, MAX_MP, MASTER, COUNTRY_ID, 
+      RACE_ID, DISPOSITION_ID, GROW_ID, 
+      MOOD_ID, GREATE_TIME, STATUS, 
+      IS_LIVE, LIFETIME, LV, 
+      EMPIRICAL, NEXT_LV_EMP, POSITION_ID
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{pa,jdbcType=REAL}, #{ma,jdbcType=REAL}, 
+      #{pd,jdbcType=REAL}, #{md,jdbcType=REAL}, #{hp,jdbcType=INTEGER}, #{mp,jdbcType=INTEGER}, 
+      #{maxHp,jdbcType=REAL}, #{maxMp,jdbcType=REAL}, #{master,jdbcType=INTEGER}, #{countryId,jdbcType=INTEGER}, 
+      #{raceId,jdbcType=INTEGER}, #{dispositionId,jdbcType=INTEGER}, #{growId,jdbcType=INTEGER}, 
+      #{moodId,jdbcType=INTEGER}, #{greateTime,jdbcType=BIGINT}, #{status,jdbcType=INTEGER}, 
+      #{isLive,jdbcType=INTEGER}, #{lifetime,jdbcType=BIGINT}, #{lv,jdbcType=INTEGER}, 
+      #{empirical,jdbcType=INTEGER}, #{nextLvEmp,jdbcType=VARCHAR}, #{positionId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiaohe.mamono.entity.Mono">
+    insert into mono
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="pa != null">
+        PA,
+      </if>
+      <if test="ma != null">
+        MA,
+      </if>
+      <if test="pd != null">
+        PD,
+      </if>
+      <if test="md != null">
+        MD,
+      </if>
+      <if test="hp != null">
+        HP,
+      </if>
+      <if test="mp != null">
+        MP,
+      </if>
+      <if test="maxHp != null">
+        MAX_HP,
+      </if>
+      <if test="maxMp != null">
+        MAX_MP,
+      </if>
+      <if test="master != null">
+        MASTER,
+      </if>
+      <if test="countryId != null">
+        COUNTRY_ID,
+      </if>
+      <if test="raceId != null">
+        RACE_ID,
+      </if>
+      <if test="dispositionId != null">
+        DISPOSITION_ID,
+      </if>
+      <if test="growId != null">
+        GROW_ID,
+      </if>
+      <if test="moodId != null">
+        MOOD_ID,
+      </if>
+      <if test="greateTime != null">
+        GREATE_TIME,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="isLive != null">
+        IS_LIVE,
+      </if>
+      <if test="lifetime != null">
+        LIFETIME,
+      </if>
+      <if test="lv != null">
+        LV,
+      </if>
+      <if test="empirical != null">
+        EMPIRICAL,
+      </if>
+      <if test="nextLvEmp != null">
+        NEXT_LV_EMP,
+      </if>
+      <if test="positionId != null">
+        POSITION_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="pa != null">
+        #{pa,jdbcType=REAL},
+      </if>
+      <if test="ma != null">
+        #{ma,jdbcType=REAL},
+      </if>
+      <if test="pd != null">
+        #{pd,jdbcType=REAL},
+      </if>
+      <if test="md != null">
+        #{md,jdbcType=REAL},
+      </if>
+      <if test="hp != null">
+        #{hp,jdbcType=INTEGER},
+      </if>
+      <if test="mp != null">
+        #{mp,jdbcType=INTEGER},
+      </if>
+      <if test="maxHp != null">
+        #{maxHp,jdbcType=REAL},
+      </if>
+      <if test="maxMp != null">
+        #{maxMp,jdbcType=REAL},
+      </if>
+      <if test="master != null">
+        #{master,jdbcType=INTEGER},
+      </if>
+      <if test="countryId != null">
+        #{countryId,jdbcType=INTEGER},
+      </if>
+      <if test="raceId != null">
+        #{raceId,jdbcType=INTEGER},
+      </if>
+      <if test="dispositionId != null">
+        #{dispositionId,jdbcType=INTEGER},
+      </if>
+      <if test="growId != null">
+        #{growId,jdbcType=INTEGER},
+      </if>
+      <if test="moodId != null">
+        #{moodId,jdbcType=INTEGER},
+      </if>
+      <if test="greateTime != null">
+        #{greateTime,jdbcType=BIGINT},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="isLive != null">
+        #{isLive,jdbcType=INTEGER},
+      </if>
+      <if test="lifetime != null">
+        #{lifetime,jdbcType=BIGINT},
+      </if>
+      <if test="lv != null">
+        #{lv,jdbcType=INTEGER},
+      </if>
+      <if test="empirical != null">
+        #{empirical,jdbcType=INTEGER},
+      </if>
+      <if test="nextLvEmp != null">
+        #{nextLvEmp,jdbcType=VARCHAR},
+      </if>
+      <if test="positionId != null">
+        #{positionId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiaohe.mamono.entity.Mono">
+    update mono
+    <set>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="pa != null">
+        PA = #{pa,jdbcType=REAL},
+      </if>
+      <if test="ma != null">
+        MA = #{ma,jdbcType=REAL},
+      </if>
+      <if test="pd != null">
+        PD = #{pd,jdbcType=REAL},
+      </if>
+      <if test="md != null">
+        MD = #{md,jdbcType=REAL},
+      </if>
+      <if test="hp != null">
+        HP = #{hp,jdbcType=INTEGER},
+      </if>
+      <if test="mp != null">
+        MP = #{mp,jdbcType=INTEGER},
+      </if>
+      <if test="maxHp != null">
+        MAX_HP = #{maxHp,jdbcType=REAL},
+      </if>
+      <if test="maxMp != null">
+        MAX_MP = #{maxMp,jdbcType=REAL},
+      </if>
+      <if test="master != null">
+        MASTER = #{master,jdbcType=INTEGER},
+      </if>
+      <if test="countryId != null">
+        COUNTRY_ID = #{countryId,jdbcType=INTEGER},
+      </if>
+      <if test="raceId != null">
+        RACE_ID = #{raceId,jdbcType=INTEGER},
+      </if>
+      <if test="dispositionId != null">
+        DISPOSITION_ID = #{dispositionId,jdbcType=INTEGER},
+      </if>
+      <if test="growId != null">
+        GROW_ID = #{growId,jdbcType=INTEGER},
+      </if>
+      <if test="moodId != null">
+        MOOD_ID = #{moodId,jdbcType=INTEGER},
+      </if>
+      <if test="greateTime != null">
+        GREATE_TIME = #{greateTime,jdbcType=BIGINT},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="isLive != null">
+        IS_LIVE = #{isLive,jdbcType=INTEGER},
+      </if>
+      <if test="lifetime != null">
+        LIFETIME = #{lifetime,jdbcType=BIGINT},
+      </if>
+      <if test="lv != null">
+        LV = #{lv,jdbcType=INTEGER},
+      </if>
+      <if test="empirical != null">
+        EMPIRICAL = #{empirical,jdbcType=INTEGER},
+      </if>
+      <if test="nextLvEmp != null">
+        NEXT_LV_EMP = #{nextLvEmp,jdbcType=VARCHAR},
+      </if>
+      <if test="positionId != null">
+        POSITION_ID = #{positionId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiaohe.mamono.entity.Mono">
+    update mono
+    set NAME = #{name,jdbcType=VARCHAR},
+      PA = #{pa,jdbcType=REAL},
+      MA = #{ma,jdbcType=REAL},
+      PD = #{pd,jdbcType=REAL},
+      MD = #{md,jdbcType=REAL},
+      HP = #{hp,jdbcType=INTEGER},
+      MP = #{mp,jdbcType=INTEGER},
+      MAX_HP = #{maxHp,jdbcType=REAL},
+      MAX_MP = #{maxMp,jdbcType=REAL},
+      MASTER = #{master,jdbcType=INTEGER},
+      COUNTRY_ID = #{countryId,jdbcType=INTEGER},
+      RACE_ID = #{raceId,jdbcType=INTEGER},
+      DISPOSITION_ID = #{dispositionId,jdbcType=INTEGER},
+      GROW_ID = #{growId,jdbcType=INTEGER},
+      MOOD_ID = #{moodId,jdbcType=INTEGER},
+      GREATE_TIME = #{greateTime,jdbcType=BIGINT},
+      STATUS = #{status,jdbcType=INTEGER},
+      IS_LIVE = #{isLive,jdbcType=INTEGER},
+      LIFETIME = #{lifetime,jdbcType=BIGINT},
+      LV = #{lv,jdbcType=INTEGER},
+      EMPIRICAL = #{empirical,jdbcType=INTEGER},
+      NEXT_LV_EMP = #{nextLvEmp,jdbcType=VARCHAR},
+      POSITION_ID = #{positionId,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

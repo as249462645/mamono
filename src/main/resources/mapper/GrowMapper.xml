@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaohe.mamono.dao.GrowMapper">
+  <resultMap id="BaseResultMap" type="com.xiaohe.mamono.entity.Grow">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="MONO_ID" jdbcType="INTEGER" property="monoId" />
+    <result column="CHILD" jdbcType="REAL" property="child" />
+    <result column="YOUNG" jdbcType="REAL" property="young" />
+    <result column="ADULT" jdbcType="REAL" property="adult" />
+    <result column="MIDDLE" jdbcType="REAL" property="middle" />
+    <result column="OLD" jdbcType="REAL" property="old" />
+    <result column="LV_UP_EMP" jdbcType="REAL" property="lvUpEmp" />
+    <result column="PA" jdbcType="REAL" property="pa" />
+    <result column="MA" jdbcType="REAL" property="ma" />
+    <result column="PD" jdbcType="REAL" property="pd" />
+    <result column="MD" jdbcType="REAL" property="md" />
+    <result column="HP" jdbcType="REAL" property="hp" />
+    <result column="MP" jdbcType="REAL" property="mp" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, MONO_ID, CHILD, YOUNG, ADULT, MIDDLE, OLD, LV_UP_EMP, PA, MA, PD, MD, HP, MP
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from grow
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from grow
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xiaohe.mamono.entity.Grow">
+    insert into grow (ID, MONO_ID, CHILD, 
+      YOUNG, ADULT, MIDDLE, OLD, 
+      LV_UP_EMP, PA, MA, PD, 
+      MD, HP, MP)
+    values (#{id,jdbcType=INTEGER}, #{monoId,jdbcType=INTEGER}, #{child,jdbcType=REAL}, 
+      #{young,jdbcType=REAL}, #{adult,jdbcType=REAL}, #{middle,jdbcType=REAL}, #{old,jdbcType=REAL}, 
+      #{lvUpEmp,jdbcType=REAL}, #{pa,jdbcType=REAL}, #{ma,jdbcType=REAL}, #{pd,jdbcType=REAL}, 
+      #{md,jdbcType=REAL}, #{hp,jdbcType=REAL}, #{mp,jdbcType=REAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiaohe.mamono.entity.Grow">
+    insert into grow
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="monoId != null">
+        MONO_ID,
+      </if>
+      <if test="child != null">
+        CHILD,
+      </if>
+      <if test="young != null">
+        YOUNG,
+      </if>
+      <if test="adult != null">
+        ADULT,
+      </if>
+      <if test="middle != null">
+        MIDDLE,
+      </if>
+      <if test="old != null">
+        OLD,
+      </if>
+      <if test="lvUpEmp != null">
+        LV_UP_EMP,
+      </if>
+      <if test="pa != null">
+        PA,
+      </if>
+      <if test="ma != null">
+        MA,
+      </if>
+      <if test="pd != null">
+        PD,
+      </if>
+      <if test="md != null">
+        MD,
+      </if>
+      <if test="hp != null">
+        HP,
+      </if>
+      <if test="mp != null">
+        MP,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="monoId != null">
+        #{monoId,jdbcType=INTEGER},
+      </if>
+      <if test="child != null">
+        #{child,jdbcType=REAL},
+      </if>
+      <if test="young != null">
+        #{young,jdbcType=REAL},
+      </if>
+      <if test="adult != null">
+        #{adult,jdbcType=REAL},
+      </if>
+      <if test="middle != null">
+        #{middle,jdbcType=REAL},
+      </if>
+      <if test="old != null">
+        #{old,jdbcType=REAL},
+      </if>
+      <if test="lvUpEmp != null">
+        #{lvUpEmp,jdbcType=REAL},
+      </if>
+      <if test="pa != null">
+        #{pa,jdbcType=REAL},
+      </if>
+      <if test="ma != null">
+        #{ma,jdbcType=REAL},
+      </if>
+      <if test="pd != null">
+        #{pd,jdbcType=REAL},
+      </if>
+      <if test="md != null">
+        #{md,jdbcType=REAL},
+      </if>
+      <if test="hp != null">
+        #{hp,jdbcType=REAL},
+      </if>
+      <if test="mp != null">
+        #{mp,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiaohe.mamono.entity.Grow">
+    update grow
+    <set>
+      <if test="monoId != null">
+        MONO_ID = #{monoId,jdbcType=INTEGER},
+      </if>
+      <if test="child != null">
+        CHILD = #{child,jdbcType=REAL},
+      </if>
+      <if test="young != null">
+        YOUNG = #{young,jdbcType=REAL},
+      </if>
+      <if test="adult != null">
+        ADULT = #{adult,jdbcType=REAL},
+      </if>
+      <if test="middle != null">
+        MIDDLE = #{middle,jdbcType=REAL},
+      </if>
+      <if test="old != null">
+        OLD = #{old,jdbcType=REAL},
+      </if>
+      <if test="lvUpEmp != null">
+        LV_UP_EMP = #{lvUpEmp,jdbcType=REAL},
+      </if>
+      <if test="pa != null">
+        PA = #{pa,jdbcType=REAL},
+      </if>
+      <if test="ma != null">
+        MA = #{ma,jdbcType=REAL},
+      </if>
+      <if test="pd != null">
+        PD = #{pd,jdbcType=REAL},
+      </if>
+      <if test="md != null">
+        MD = #{md,jdbcType=REAL},
+      </if>
+      <if test="hp != null">
+        HP = #{hp,jdbcType=REAL},
+      </if>
+      <if test="mp != null">
+        MP = #{mp,jdbcType=REAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiaohe.mamono.entity.Grow">
+    update grow
+    set MONO_ID = #{monoId,jdbcType=INTEGER},
+      CHILD = #{child,jdbcType=REAL},
+      YOUNG = #{young,jdbcType=REAL},
+      ADULT = #{adult,jdbcType=REAL},
+      MIDDLE = #{middle,jdbcType=REAL},
+      OLD = #{old,jdbcType=REAL},
+      LV_UP_EMP = #{lvUpEmp,jdbcType=REAL},
+      PA = #{pa,jdbcType=REAL},
+      MA = #{ma,jdbcType=REAL},
+      PD = #{pd,jdbcType=REAL},
+      MD = #{md,jdbcType=REAL},
+      HP = #{hp,jdbcType=REAL},
+      MP = #{mp,jdbcType=REAL}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

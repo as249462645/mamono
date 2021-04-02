@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+  <!--驱动包的路径-->
+  <classPathEntry location="C:\Users\24946\.m2\repository\mysql\mysql-connector-java\8.0.23\mysql-connector-java-8.0.23.jar" />
+
+  <!--数据库连接-->
+  <context id="DB2Tables" targetRuntime="MyBatis3">
+    <!--注释-->
+    <commentGenerator>
+      <property name="suppressAllComments" value="true"/>
+      <property name="suppressDate" value="true"/>
+    </commentGenerator>
+    <!--数据库连接地址及账号密码-->
+    <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+      connectionURL="jdbc:mysql://rm-bp1948lwvnonka1j30o.mysql.rds.aliyuncs.com/mamono?characterEncoding=utf-8"
+      userId="heyi"
+      password="aS576112369">
+    </jdbcConnection>
+
+    <javaTypeResolver>
+      <property name="forceBigDecimals" value="false"/>
+    </javaTypeResolver>
+    <!--生成entity类存放位置-->
+    <javaModelGenerator targetPackage="com.xiaohe.mamono.entity" targetProject="src/main/java">
+      <!--是否对model添加构造函数-->
+      <property name="constructorBased" value="false"/>
+      <!--是否允许子包-->
+      <property name="enableSubPackages" value="true"/>
+      <!--建立的model对象是否不可变，也就是生成的model没有setter方法-->
+      <property name="immutable" value="false"/>
+      <property name="trimStrings" value="true"/>
+    </javaModelGenerator>
+
+    <!--生成映射文件存放位置-->
+    <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources">
+      <property name="enableSubPackages" value="true"/>
+    </sqlMapGenerator>
+
+    <!--生成Dao类的存放位置-->
+    <!-- 客户端代码,生成易于使用的正对Model对象和XML配置文件的代码
+    type="ANNOTATEDMAPPER", 生成Java Model和基于注解的Mapper对象
+    type="MIXEDMAPPER", 生成基于注解的Java Model和相应的Mapper对象
+    type="XMLMAPPER", 生成SQLMap XML文件和独立的Mapper接口
+    -->
+    <javaClientGenerator type="XMLMAPPER" targetPackage="com.xiaohe.mamono.dao"
+      targetProject="src/main/java">
+      <property name="enableSubPackages" value="true"/>
+    </javaClientGenerator>
+
+    <!--请根据自己数据库对应的表名进行配置修改，这里仅供参考-->
+    <!--生成对应表及类名-->
+    <table  tableName="area" domainObjectName="Area"
+      enableInsert="true" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+      enableSelectByExample="false" selectByExampleQueryId="false">
+      <!-- 忽略字段 可选的（0 or 1） -->
+      <!-- <ignoreColumn column="is_use" /> -->
+      <!--//无论字段是什么类型，生成的类属性都是varchar。 可选的（0 or 1） 测试无效 -->
+      <!-- <columnOverride column="city_code" jdbcType="VARCHAR" /> -->
+    </table>
+    <table  tableName="country" domainObjectName="Country"
+      enableInsert="true" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+      enableSelectByExample="false" selectByExampleQueryId="false">
+      <!-- 忽略字段 可选的（0 or 1） -->
+      <!-- <ignoreColumn column="is_use" /> -->
+      <!--//无论字段是什么类型，生成的类属性都是varchar。 可选的（0 or 1） 测试无效 -->
+      <!-- <columnOverride column="city_code" jdbcType="VARCHAR" /> -->
+    </table>
+    <table  tableName="grow" domainObjectName="Grow"
+      enableInsert="true" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+      enableSelectByExample="false" selectByExampleQueryId="false">
+      <!-- 忽略字段 可选的（0 or 1） -->
+      <!-- <ignoreColumn column="is_use" /> -->
+      <!--//无论字段是什么类型，生成的类属性都是varchar。 可选的（0 or 1） 测试无效 -->
+      <!-- <columnOverride column="city_code" jdbcType="VARCHAR" /> -->
+    </table>
+    <table  tableName="landform" domainObjectName="Landform"
+      enableInsert="true" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+      enableSelectByExample="false" selectByExampleQueryId="false">
+      <!-- 忽略字段 可选的（0 or 1） -->
+      <!-- <ignoreColumn column="is_use" /> -->
+      <!--//无论字段是什么类型，生成的类属性都是varchar。 可选的（0 or 1） 测试无效 -->
+      <!-- <columnOverride column="city_code" jdbcType="VARCHAR" /> -->
+    </table>
+    <table  tableName="race" domainObjectName="Race"
+      enableInsert="true" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+      enableSelectByExample="false" selectByExampleQueryId="false">
+      <!-- 忽略字段 可选的（0 or 1） -->
+      <!-- <ignoreColumn column="is_use" /> -->
+      <!--//无论字段是什么类型，生成的类属性都是varchar。 可选的（0 or 1） 测试无效 -->
+      <!-- <columnOverride column="city_code" jdbcType="VARCHAR" /> -->
+    </table>
+
+</context>
+</generatorConfiguration>
