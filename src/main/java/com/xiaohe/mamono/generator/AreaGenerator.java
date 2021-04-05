@@ -4,9 +4,8 @@ import com.xiaohe.mamono.comm.ArrayCom;
 import com.xiaohe.mamono.dao.AreaMapper;
 import com.xiaohe.mamono.entity.Area;
 import com.xiaohe.mamono.entity.modal.AreaModalOfMap;
-import com.xiaohe.mamono.entity.modal.Map;
+import com.xiaohe.mamono.entity.modal.MamonoMap;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -42,21 +41,22 @@ public class AreaGenerator {
         return area;
     }
 
-    public int areaGenerator(int maxNumber,int number, Map[][] map, int length, int height,int countryId) {
-        if (number == maxNumber || length == map.length || height == map[0].length || length < 0 || height < 0) {
+    public int areaGenerator(int maxNumber,int number, MamonoMap[][] mamonoMap, int length, int height,int countryId) {
+        if (number == maxNumber || length == mamonoMap.length || height == mamonoMap[0].length || length < 0 || height < 0) {
             return number - 1;
         }
-        if(map[length][height].getArea() != null){
+        if(mamonoMap[length][height].getArea() != null){
             return number - 1;
         }
         AreaModalOfMap areaModalOfMap = new AreaModalOfMap();
         areaModalOfMap.setCountryId(countryId);
         areaModalOfMap.setX(length);
         areaModalOfMap.setY(height);
-//        int areaId = areaMapper.insert(areaModalOfMap);
-//        areaModalOfMap.setId(areaId);
-        map[length][height].setArea(areaModalOfMap);
-        print(map);
+        int areaId = areaMapper.insert(areaModalOfMap);
+        areaModalOfMap.setId(areaId);
+        mamonoMap[length][height].setArea(areaModalOfMap);
+        //print(mamonoMap);
+        //随机方向
         arrayIndexGenerator();
         boolean flag = false;
         number += 1;
@@ -64,7 +64,7 @@ public class AreaGenerator {
             int x = length + ArrayCom.arrayEight[arrayIndexlist.get(i)][0];
             int y = height + ArrayCom.arrayEight[arrayIndexlist.get(i)][1];
 
-            int t = areaGenerator(maxNumber,number,map,x,y,countryId);
+            int t = areaGenerator(maxNumber,number, mamonoMap,x,y,countryId);
             if (t > number - 1) {
                 return t;
             }
@@ -72,12 +72,12 @@ public class AreaGenerator {
         return number;
     }
 
-    public void areaGenerator(Map[][] map,int size){
-        for (int i = 0; i < map.length; i++) {
-            for (int j = 0; j < map[0].length; j++) {
-                if(map[i][j].getArea() == null){
+    public void areaGenerator(MamonoMap[][] mamonoMap,int size,int countryId){
+        for (int i = 0; i < mamonoMap.length; i++) {
+            for (int j = 0; j < mamonoMap[0].length; j++) {
+                if(mamonoMap[i][j].getArea() == null){
                     int currentSize = 0;
-                    currentSize = areaGenerator(size,currentSize,map,i,j,0);
+                    currentSize = areaGenerator(size,currentSize, mamonoMap,i,j,countryId);
                     if(currentSize >=size)
                         return;
                 }
@@ -95,24 +95,24 @@ public class AreaGenerator {
 
     public static void main(String[] args) {
         AreaGenerator areaGenerator = new AreaGenerator();
-        Map[][] map = new Map[5][5];
-        for (int i = 0; i < map.length; i++) {
-            for (int j = 0; j < map.length; j++) {
-                map[i][j] = new Map();
+        MamonoMap[][] mamonoMap = new MamonoMap[5][5];
+        for (int i = 0; i < mamonoMap.length; i++) {
+            for (int j = 0; j < mamonoMap.length; j++) {
+                mamonoMap[i][j] = new MamonoMap();
             }
         }
         for(int i = 0;i<1;i++) {
-            areaGenerator.areaGenerator(map, 15);
+            areaGenerator.areaGenerator(mamonoMap, 15,1);
             System.out.println("结果");
-            areaGenerator.print(map);
+            areaGenerator.print(mamonoMap);
         }
 
     }
 
-    public void print(Map[][] map){
-        for (int i = 0; i < map.length; i++) {
-            for (int j = 0; j < map.length; j++) {
-                System.out.print(map[i][j].getArea() == null?"0"+"\t":"1"+"\t" );
+    public void print(MamonoMap[][] mamonoMap){
+        for (int i = 0; i < mamonoMap.length; i++) {
+            for (int j = 0; j < mamonoMap.length; j++) {
+                System.out.print(mamonoMap[i][j].getArea() == null?"0"+"\t":"1"+"\t" );
             }
             System.out.println();
         }

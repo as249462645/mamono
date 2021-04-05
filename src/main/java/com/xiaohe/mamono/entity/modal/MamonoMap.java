@@ -2,9 +2,11 @@ package com.xiaohe.mamono.entity.modal;
 
 import com.xiaohe.mamono.entity.Mono;
 import lombok.Data;
+import org.springframework.stereotype.Component;
 
 @Data
-public class Map {
+@Component("mamonoMap")
+public class MamonoMap {
 
     private AreaModalOfMap area;
 
