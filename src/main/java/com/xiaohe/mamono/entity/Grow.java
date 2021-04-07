@@ -32,5 +32,4 @@ public class Grow {
 
     private Float mp;
 
-
-}
+    }

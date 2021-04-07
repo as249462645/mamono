@@ -1,5 +1,6 @@
 package com.xiaohe.mamono.entity;
 
+
 import lombok.Data;
 
 @Data
@@ -12,4 +13,4 @@ public class Country {
 
     private Integer kind;
 
-}
+    }

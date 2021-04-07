@@ -4,7 +4,7 @@ spring:
   datasource:
     username: heyi
     password: aS576112369
-    url: jdbc:mysql:rm-bp1948lwvnonka1j30o.mysql.rds.aliyuncs.com?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+    url: jdbc:mysql://rm-bp1948lwvnonka1j30o.mysql.rds.aliyuncs.com/mamono?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
 logging:
   level:
@@ -12,16 +12,16 @@ logging:
       example:
         mapper : debug
 mybatis:
-  mapper-locations: classpath:mapping/*Mapper.xml
-  type-aliases-package: com.xiaohe.mamono.*
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.xiaohe.mamono.dao.*
 
 mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true
 
 map:
-  height: 100
-  length: 100
+  height: 10
+  length: 10
 
 country:
   name: "菲律宾、越南、老挝、柬埔寨、缅甸、泰国、马来西亚、文莱、新加坡、印度尼西亚、中国、蒙古、朝鲜、韩国、日本、尼泊尔、不丹、孟加拉国、印度、巴基斯坦、斯里兰卡、马尔代夫

@@ -11,11 +11,13 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class AreaGenerator {
 
     @Autowired
-    public static AreaMapper areaMapper;
+    public AreaMapper areaMapper;
 
     private Queue<String> queue = new LinkedList<String>();
 
@@ -24,15 +26,11 @@ public class AreaGenerator {
     private List<Integer> arrayIndexlist = new ArrayList<Integer>(){};
 
     public AreaGenerator() {
-        init();
     }
 
-    private void init() {
 
-    }
-
-    public static Area areaGenerator(int x, int y, int countryId) {
-        Area area = new Area();
+    public AreaModalOfMap areaGenerator(int x, int y, int countryId) {
+        AreaModalOfMap area = new AreaModalOfMap();
         area.setX(x);
         area.setY(y);
         area.setCountryId(countryId);
@@ -48,14 +46,8 @@ public class AreaGenerator {
         if(mamonoMap[length][height].getArea() != null){
             return number - 1;
         }
-        AreaModalOfMap areaModalOfMap = new AreaModalOfMap();
-        areaModalOfMap.setCountryId(countryId);
-        areaModalOfMap.setX(length);
-        areaModalOfMap.setY(height);
-        int areaId = areaMapper.insert(areaModalOfMap);
-        areaModalOfMap.setId(areaId);
+        AreaModalOfMap areaModalOfMap = (AreaModalOfMap)areaGenerator(length,height,countryId);
         mamonoMap[length][height].setArea(areaModalOfMap);
-        //print(mamonoMap);
         //随机方向
         arrayIndexGenerator();
         boolean flag = false;

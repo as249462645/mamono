@@ -14,4 +14,4 @@ public class Area {
 
     private Integer landformId;
 
-    }
+}

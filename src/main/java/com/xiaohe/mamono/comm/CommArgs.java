@@ -26,7 +26,6 @@ public class CommArgs {
 
     public static Stack<String> COUNTRY_STACK;
 
-
     private void inti(){
         countryStackInit();
     }
