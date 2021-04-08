@@ -30,3 +30,6 @@ country:
   number:
   minSize:
   maxSize:
+
+mamono:
+  race: "暗夜精灵、人类、兽人、牛头人、矮人、亡灵、巨魔、侏儒、血精灵、德莱尼、狼人、地精、熊猫人"

@@ -19,8 +19,6 @@ public class AreaGenerator {
     @Autowired
     public AreaMapper areaMapper;
 
-    private Queue<String> queue = new LinkedList<String>();
-
     public static List<Area> areas = Collections.synchronizedList(new ArrayList<>());
 
     private List<Integer> arrayIndexlist = new ArrayList<Integer>(){};

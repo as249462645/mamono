@@ -10,4 +10,8 @@ public class RandomUtil {
         return (int)(min+Math.random()*(max-min+1));
     }
 
+    public static int getRandomInt(long min,long max){
+        return (int)(min+Math.random()*(max-min+1));
+    }
+
 }

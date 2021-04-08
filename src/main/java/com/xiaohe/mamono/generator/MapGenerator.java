@@ -1,8 +1,6 @@
 package com.xiaohe.mamono.generator;
 
-import com.xiaohe.mamono.comm.CommArgs;
 import com.xiaohe.mamono.entity.modal.MamonoMap;
-import com.xiaohe.mamono.properties.CountryProperties;
 import com.xiaohe.mamono.properties.MapProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

@@ -1,16 +1,22 @@
 package com.xiaohe.mamono.generator;
 
-import com.xiaohe.mamono.comm.CommArgs;
 import com.xiaohe.mamono.dao.CountryMapper;
 import com.xiaohe.mamono.entity.Country;
 import com.xiaohe.mamono.entity.modal.MamonoMap;
+import com.xiaohe.mamono.util.MyConllectionUtil;
 import com.xiaohe.mamono.util.RandomUtil;
+import com.xiaohe.mamono.util.SysConf;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Stack;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.DependsOn;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
+@DependsOn("sysConf")
 @Component
 public class CountryGenerator {
 
@@ -19,6 +25,11 @@ public class CountryGenerator {
 
     @Autowired
     private CountryMapper countryMapper;
+
+    @Autowired
+    private Environment environment;
+
+    public static Stack<String> COUNTRY_STACK;
 
     public static List<Country> countrys = Collections.synchronizedList(new ArrayList<>());
 
@@ -29,7 +40,12 @@ public class CountryGenerator {
     private int countryNumber;
 
     public CountryGenerator() {
+        countryStackInit();
+    }
 
+    private void countryStackInit(){
+        String countrys = SysConf.getProperties("country.name");
+        COUNTRY_STACK = MyConllectionUtil.createStack(countrys);
     }
 
     /**
@@ -113,7 +129,7 @@ public class CountryGenerator {
 
     private Country getCountry(int size) {
         Country country = new Country();
-        country.setName(CommArgs.COUNTRY_STACK.pop());
+        country.setName(COUNTRY_STACK.pop());
         country.setSize(size);
         //todo
         //country.setKind();

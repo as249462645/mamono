@@ -59,11 +59,6 @@
       enableInsert="true" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
       enableSelectByExample="false" selectByExampleQueryId="false">
     </table>-->
-    <table tableName="area" />
-    <table tableName="country" />
-    <table tableName="grow" />
-    <table tableName="landform" />
-    <table tableName="mono" />
     <table tableName="race" />
 
 
