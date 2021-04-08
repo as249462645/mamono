@@ -99,13 +99,13 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.xiaohe.mamono.entity.Area">
+  <insert id="insert" parameterType="com.xiaohe.mamono.entity.Area" useGeneratedKeys="true" keyProperty="id">
     insert into area (id, X, Y, COUNTRY_ID, 
       LANDFORM_ID)
     values (#{id,jdbcType=INTEGER}, #{x,jdbcType=INTEGER}, #{y,jdbcType=INTEGER}, #{countryId,jdbcType=INTEGER}, 
       #{landformId,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.xiaohe.mamono.entity.Area">
+  <insert id="insertSelective" parameterType="com.xiaohe.mamono.entity.Area" useGeneratedKeys="true" keyProperty="id">
     insert into area
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">

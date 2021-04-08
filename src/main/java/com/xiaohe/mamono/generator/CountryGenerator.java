@@ -118,7 +118,7 @@ public class CountryGenerator {
         //todo
         //country.setKind();
         //保存到数据库并将id回设
-        countryMapper.insert(country) ;
+        countryMapper.insert(country);
         return country;
     }
 

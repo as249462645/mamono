@@ -34,8 +34,8 @@ public class AreaGenerator {
         area.setX(x);
         area.setY(y);
         area.setCountryId(countryId);
-        areas.add(area);
         areaMapper.insert(area);
+        areas.add(area);
         return area;
     }
 
@@ -46,8 +46,10 @@ public class AreaGenerator {
         if(mamonoMap[length][height].getArea() != null){
             return number - 1;
         }
-        AreaModalOfMap areaModalOfMap = (AreaModalOfMap)areaGenerator(length,height,countryId);
+        AreaModalOfMap areaModalOfMap = areaGenerator(length,height,countryId);
         mamonoMap[length][height].setArea(areaModalOfMap);
+//        System.out.println("步骤，第"+ number + "个");
+//        print(mamonoMap);
         //随机方向
         arrayIndexGenerator();
         boolean flag = false;
@@ -65,10 +67,10 @@ public class AreaGenerator {
     }
 
     public void areaGenerator(MamonoMap[][] mamonoMap,int size,int countryId){
+        int currentSize = 0;
         for (int i = 0; i < mamonoMap.length; i++) {
             for (int j = 0; j < mamonoMap[0].length; j++) {
                 if(mamonoMap[i][j].getArea() == null){
-                    int currentSize = 0;
                     currentSize = areaGenerator(size,currentSize, mamonoMap,i,j,countryId);
                     if(currentSize >=size)
                         return;
@@ -94,7 +96,7 @@ public class AreaGenerator {
             }
         }
         for(int i = 0;i<1;i++) {
-            areaGenerator.areaGenerator(mamonoMap, 15,1);
+            areaGenerator.areaGenerator(mamonoMap, 24,1);
             System.out.println("结果");
             areaGenerator.print(mamonoMap);
         }
