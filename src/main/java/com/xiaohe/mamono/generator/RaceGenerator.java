@@ -23,6 +23,7 @@ public class RaceGenerator {
 
     public RaceGenerator(){
         raceListInit();
+        initRace(raceNameList);
     }
 
     private void raceListInit(){
